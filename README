@@ -1,0 +1,38 @@
+File: ex7a.c
+ ========================================
+ Writen by: Rotem Kashani , id = 209073352 , login = rotemkash 
+	    Mahmood Jazmawy , id= 211345277, login=Mahmoodja
+this program fills an array with prime numbers in an ascending order. we initialize a global
+array with the size of 101. the main thread zeros the cells.the first cell is used as a lockign
+mechanism, 0=locked. the main thread creates three other threads, each thread draws a random 
+number and tries to add it to the array. and after they try 100 times, doesn't matter if they
+succeeded it insert numbers or not. they finish and print to the console how many numbers they
+managed to insert
+
+race mode: there is a chance that one process will finish to insert
+numbers and two processes will start together and not recognize 
+the new values of each other.
+
+Compile: gcc -Wall ex7a.c -o ex7a -lpthread
+
+Run: ex7a
+
+
+File: ex7b.c 
+ ========================================
+ Writen by: Rotem Kashani , id = 209073352 , login = rotemkash 
+	    Mahmood Jazmawy , id= 211345277, login=Mahmoodja
+this program, main thread creates 3 sons and saves their id in a globa variable. each son is a server 
+that does a certain "job".
+First server: prime server, it goes to sleep  and wait to get SIGUSR1 signal when it wakes up it gets the
+data in the global variable and checks for prime numbers and puts the result in the second array.
+Second server: th epalindrome server: this server waits for SIGUSR2 and when it gets it it checks the data if it's
+a palindrome it returns 1 in the first cell.
+and the third server is the front end which takes input from the user
+and send it to the server and receives an answer.
+
+race mode: there is no racing mode
+
+Compile: gcc -Wall ex7b.c -o ex7b -lpthread
+
+Run: ex7b
